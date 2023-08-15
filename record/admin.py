@@ -1,4 +1,5 @@
 from django.contrib import admin
+from mapbox_location_field.admin import MapAdmin
 
 from record.models import Patient, Incident, Hospital, MedicalRecord, RescueRequest
 
@@ -6,7 +7,7 @@ from record.models import Patient, Incident, Hospital, MedicalRecord, RescueRequ
 admin.site.register(Patient)
 
 # Used to add the Incident Model to the Django Admin Screen.
-admin.site.register(Incident)
+admin.site.register(Incident, MapAdmin)
 
 # Used to add the Hospital Model to the Django Admin Screen.
 admin.site.register(Hospital)

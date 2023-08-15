@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "mapbox_location_field",
+    'tempus_dominus',
+    'fontawesomefree',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'record',
 ]
 
@@ -72,6 +77,8 @@ TEMPLATES = [
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'record:overview'
 LOGOUT_REDIRECT_URL = 'login'
+
+MAPBOX_KEY = "pk.eyJ1IjoiNDA0NTYzNzIiLCJhIjoiY2xsYzNyMmkyMGRxZzNkbDF4ZmF3amNvdiJ9.ujAirqcKpBIvEUiCPFNpWg"
 
 WSGI_APPLICATION = 'kwik_medical.wsgi.application'
 
@@ -127,6 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

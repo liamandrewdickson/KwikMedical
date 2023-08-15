@@ -6,9 +6,17 @@
     <meta charset="UTF-8">
     <title>KwikMedical</title>
 
-{#    <link rel="shortcut icon" href="{% static 'base/file/Userfy Logo.png' %}"/>#}
+    {#    <link rel="shortcut icon" href="{% static 'base/file/Userfy Logo.png' %}"/>#}
 
     <link href="{% static 'vendor/bootstrap-5.3.1/css/bootstrap.min.css' %}" rel="stylesheet"/>
+
+    <!-- Our project just needs Font Awesome Free's Solid and Brand files -->
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+
+    {% block head %}
+    {% endblock %}
 
 </head>
 <body>
@@ -21,7 +29,10 @@
 {% block footer %}
 {% endblock %}
 
+<script type="text/javascript" src="{% static "vendor/jquery-3.6.3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "vendor/jquery-3.6.3.js" %}"></script>
 <script type="text/javascript" src="{% static "vendor/bootstrap-5.3.1/js/bootstrap.min.js" %}"></script>
+<script type="text/javascript" src="{% static "vendor/bootstrap-5.3.1/js/bootstrap.bundle.js" %}"></script>
 
 </body>
 </html>

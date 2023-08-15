@@ -6,14 +6,13 @@ class Hospital(models.Model):
     Model used for the regional hospitals.
     """
 
+    from mapbox_location_field.models import LocationField
+
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name='Name')
     """The name of the hospital."""
 
-    longitude = models.DecimalField(max_digits=9, decimal_places=6, verbose_name='Longitude')
-    """The longitude that the hospital."""
-
-    latitude = models.DecimalField(max_digits=9, decimal_places=6, verbose_name='Latitude')
-    """The latitude that the hospital."""
+    location = LocationField(null=True, blank=True, map_attrs={"center": [-3.2141745, 55.933486], "marker_color": "blue"})
+    """The location of the hospital."""
 
     deleted = models.BooleanField(default=False, null=False, verbose_name='Deleted')
     """Is this hospital entry deleted?"""
