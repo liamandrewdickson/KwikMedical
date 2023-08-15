@@ -1,0 +1,61 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-light navbar-light">
+    <a class="navbar-brand" href="{% url 'record:overview' %}">
+{#        <img id="navbar-icon" src="{% static 'base/file/Userfy Logo.png' %}" height="40"#}
+{#             class="d-inline-block align-top" alt="Icon">#}
+        KwikMedical
+    </a>
+    {% if user.is_authenticated %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#kwikMedicalNavbar"
+                aria-controls="kwikMedicalNavbar" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse justify-content-between" id="kwikMedicalNavbar">
+
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'record:overview' %}">Home</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-5">
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.get_full_name }}
+                        <i class="fas fa-user-alt"></i>
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        {% if user.is_superuser %}
+                            <a class="dropdown-item" target="_blank" href="{% url 'admin:index' %}">
+                                <i class="fas fa-users-cog fa-sm fa-fw mr-2"></i>Admin
+                            </a>
+                        {% endif %}
+                        <a class="dropdown-item">
+                            <div class="form-check form-switch ps-0"><input
+                                    class="form-check-input ms-0 me-2 cursor-pointer"
+                                    onclick="theme(this.checked)"
+                                    id="theme"
+                                    type="checkbox"
+                                    data-theme-control="theme"/><label
+                                    for="theme">Dark Mode</label></div>
+                        </a>
+                        <a class="dropdown-item">
+                            <input class="btn btn-sm btn-primary" type="button" id="font-button-1" value="-A">
+                            <input class="btn btn-sm btn-primary" type="button" id="font-button-2" value="=A">
+                            <input class="btn btn-sm btn-primary" type="button" id="font-button-3" value="+A">
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
+</nav>

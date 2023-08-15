@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+from record.models import Patient, Incident, Hospital, MedicalRecord, RescueRequest
+
+# Used to add the Patient Model to the Django Admin Screen.
+admin.site.register(Patient)
+
+# Used to add the Incident Model to the Django Admin Screen.
+admin.site.register(Incident)
+
+# Used to add the Hospital Model to the Django Admin Screen.
+admin.site.register(Hospital)
+
+# Used to add the MedicalRecord Model to the Django Admin Screen.
+admin.site.register(MedicalRecord)
+
+# Used to add the RescueRequest Model to the Django Admin Screen.
+admin.site.register(RescueRequest)

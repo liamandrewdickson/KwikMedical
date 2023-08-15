@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <section class="jumbotron">
+            <div class="container col-sm-5 col-md-5 col-lg-5">
+                <h1>Login</h1>
+            </div>
+        </section>
+        <div class="container col-sm-5 col-md-5 col-lg-5">
+            {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-success float-right mt-2">
+                    Login
+                </button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
