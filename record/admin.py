@@ -10,7 +10,7 @@ admin.site.register(Patient)
 admin.site.register(Incident, MapAdmin)
 
 # Used to add the Hospital Model to the Django Admin Screen.
-admin.site.register(Hospital)
+admin.site.register(Hospital, MapAdmin)
 
 # Used to add the MedicalRecord Model to the Django Admin Screen.
 admin.site.register(MedicalRecord)

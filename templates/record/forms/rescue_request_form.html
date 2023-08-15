@@ -3,20 +3,18 @@
 {% load static %}
 
 {% block head %}
-    {% load mapbox_location_field_tags %}
-    {% location_field_includes %}
-    {% include_jquery %}
+
 {% endblock %}
 
 {% block content %}
-    {{ incident_form.media }}
+    {{ rescue_request_form.media }}
 
     <section class="pb-5 pt-5">
         <div class="container">
-            <h1>Incident</h1>
+            <h1>Rescue Request</h1>
         </div>
     </section>
-    <form method="POST" id="incidentForm">
+    <form method="POST" id="rescueRequestForm">
         <div class="col-xl-10 m-auto">
             <div class="row mb-2">
                 <p>
@@ -28,26 +26,17 @@
             {% csrf_token %}
             <div class="mb-6">
                 <div class="row">
-                    <div class="col-sm-12 col-xl-3">
-                        {{ incident_form.nhs_reg_number|as_crispy_field }}
+                    <div class="col-sm-12 col-xl-6">
+                        {{ rescue_request_form.patient|as_crispy_field }}
                     </div>
-                    <div class="col-sm-12 col-xl-3">
-                        {{ incident_form.time_occurred|as_crispy_field }}
-                    </div>
-                    <div class="col-sm-12 col-xl-3">
-                        {{ incident_form.action_taken|as_crispy_field }}
-                    </div>
-                    <div class="col-sm-12 col-xl-3">
-                        {{ incident_form.minutes_on_call|as_crispy_field }}
+                    <div class="col-sm-12 col-xl-6">
+                        {{ rescue_request_form.hospital|as_crispy_field }}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-xl-12">
-                        {{ incident_form.description|as_crispy_field }}
+                        {{ rescue_request_form.description|as_crispy_field }}
                     </div>
-                </div>
-                <div class="row">
-                    {{ incident_form.location|as_crispy_field }}
                 </div>
                 <input type='hidden' value='user' name='form'>
                 <button type="submit" class="btn btn-primary mt-2 float-end" name="redirect"

@@ -11,7 +11,9 @@ class Hospital(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name='Name')
     """The name of the hospital."""
 
-    location = LocationField(null=True, blank=True, map_attrs={"center": [-3.2141745, 55.933486], "marker_color": "blue"})
+    location = LocationField(null=True, blank=True,
+                             map_attrs={"center": [-3.2141745, 55.933486], "marker_color": "blue"},
+                             default=[-3.2141745, 55.933486])
     """The location of the hospital."""
 
     deleted = models.BooleanField(default=False, null=False, verbose_name='Deleted')
