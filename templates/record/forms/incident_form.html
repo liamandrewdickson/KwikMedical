@@ -21,37 +21,36 @@
             <div class="row mb-2">
                 <p>
                     <strong>
-                        Please log the details of the Incident reported.
+                        Please log the details of the Patient and the Incident reported.
                     </strong>
                 </p>
             </div>
             {% csrf_token %}
             <div class="mb-6">
+                {% include 'record/forms/patient_form.html' %}
                 <div class="row">
-                    <div class="col-sm-12 col-xl-3">
+                    <div class="col-sm-12 col-xl-4">
                         {{ incident_form.nhs_reg_number|as_crispy_field }}
                     </div>
-                    <div class="col-sm-12 col-xl-3">
+                    <div class="col-sm-12 col-xl-4">
                         {{ incident_form.time_occurred|as_crispy_field }}
                     </div>
-                    <div class="col-sm-12 col-xl-3">
-                        {{ incident_form.action_taken|as_crispy_field }}
-                    </div>
-                    <div class="col-sm-12 col-xl-3">
+                    <div class="col-sm-12 col-xl-4">
                         {{ incident_form.minutes_on_call|as_crispy_field }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-xl-12">
+                    <div class="col-sm-12 col-xl-6">
                         {{ incident_form.description|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        {{ incident_form.action_taken|as_crispy_field }}
                     </div>
                 </div>
                 <div class="row">
                     {{ incident_form.location|as_crispy_field }}
                 </div>
-                <input type='hidden' value='user' name='form'>
-                <button type="submit" class="btn btn-primary mt-2 float-end" name="redirect"
-                        value="{% url 'record:overview' %}">Submit
+                <button type="submit" class="btn btn-primary mt-2 float-end">Submit
                 </button>
             </div>
         </div>

@@ -19,7 +19,7 @@
             <div class="row mb-2">
                 <p>
                     <strong>
-                        Please log the details of the Incident reported.
+                        Please log the details for the Ambulance.
                     </strong>
                 </p>
             </div>
@@ -42,6 +42,7 @@
                 <button type="submit" class="btn btn-primary mt-2 float-end" name="redirect"
                         value="{% url 'record:overview' %}">Submit
                 </button>
+                {% include 'record/medical_record_list.html' %}
             </div>
         </div>
     </form>

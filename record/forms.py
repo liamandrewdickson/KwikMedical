@@ -1,6 +1,21 @@
 from django.forms import ModelForm, DateField, Textarea
 
 
+class PatientForm(ModelForm):
+    """
+    Form for the Patient table.
+    """
+
+    class Meta:
+        """
+        Model Meta is for “anything that’s not a field”, such as ordering options (ordering),
+        database table name (db_table), or human-readable singular and plural names.
+        """
+        from record.models import Patient
+        model = Patient
+        fields = '__all__'
+
+
 class IncidentForm(ModelForm):
     """
     Form for the Incident table.
@@ -30,6 +45,7 @@ class IncidentForm(ModelForm):
 
         widgets = {
             'description': Textarea(attrs={'rows': 2}),
+            'action_taken': Textarea(attrs={'rows': 2}),
         }
 
 

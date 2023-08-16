@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="pb-5 pt-5">
+        <div class="container">
+            <h1>Incidents</h1>
+        </div>
+    </section>
+    <main class="col-xl-10 m-auto">
+        <table class="table table-sm table-bordered border-light rounded-3 text-black table-hover" id="incident_table">
+            <thead class="bg-300 cursor-pointer">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NHS Registration Number</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Occurred</th>
+                <th scope="col">Location</th>
+                <th scope="col">Action Taken</th>
+                <th scope="col">Minutes on Call</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for incident in incident_records %}
+                <tr class="table-row cursor-pointer">
+                    <th class="col-1" scope="row">{{ incident.id }}</th>
+                    <td class="col-1">{{ incident.nhs_reg_number }}</td>
+                    <td class="col-1">{{ incident.description }}</td>
+                    <td class="col-1">{{ incident.time_occurred }}</td>
+                    <td class="col-2">{{ incident.location }}</td>
+                    <td class="col-2">{{ incident.action_taken }}</td>
+                    <td class="col-1">{{ incident.minutes_on_call }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

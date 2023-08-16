@@ -1,0 +1,31 @@
+{% load static %}
+
+{% block content %}
+    <div class="row mb-2 mt-5">
+        <p>
+            <strong>
+                Patient's Medical History
+            </strong>
+        </p>
+    </div>
+    <table class="table table-sm table-bordered border-light rounded-3 text-black table-hover" id="incident_table">
+        <thead class="bg-300 cursor-pointer">
+        <tr>
+            <th scope="col">NHS Registration Number</th>
+            <th scope="col">Incident description</th>
+            <th scope="col">Description</th>
+            <th scope="col">Treatment</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for medical_record in medical_records %}
+            <tr class="table-row cursor-pointer">
+                <td class="col-1">{{ medical_record.patient.nhs_reg_number }}</td>
+                <td class="col-2">{{ medical_record.incident.description }}</td>
+                <td class="col-1">{{ medical_record.description }}</td>
+                <td class="col-2">{{ medical_record.treatment }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
