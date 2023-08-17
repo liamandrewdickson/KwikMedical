@@ -12,7 +12,7 @@ class MedicalRecord(models.Model):
     description = models.CharField(max_length=50, blank=True, null=True, verbose_name='Description')
     """The description of the medical record."""
 
-    treatment = models.CharField(max_length=50, blank=True, null=True, verbose_name='Treatment')
+    treatment = models.CharField(max_length=50, blank=True, null=True, verbose_name='Treatment ')
     """The treatment the patient received."""
 
     patient = models.ForeignKey(Patient, models.DO_NOTHING, null=False)

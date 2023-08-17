@@ -1,57 +1,63 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
-<div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'record:overview' %}">
-        <i class="fa-solid fa-truck-medical"></i>
-        KwikMedical
-    </a>
-    {% if user.is_authenticated %}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#kwikMedicalNavbar"
-                aria-controls="kwikMedicalNavbar" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse justify-content-between" id="kwikMedicalNavbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'record:overview' %}">
+            <i class="fa-solid fa-truck-medical"></i>
+            KwikMedical
+        </a>
+        {% if user.is_authenticated %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#kwikMedicalNavbar"
+                    aria-controls="kwikMedicalNavbar" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse justify-content-between" id="kwikMedicalNavbar">
 
-            <ul class="navbar-nav mr-auto">
-                {% if user.is_superuser %}
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'record:overview' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'record:incident_form' %}">New Incident</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'record:incident_list' %}">Incidents</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'record:medical_record_list' %}">Medical Records</a>
-                    </li>
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav ml-5">
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ user.get_full_name }}
-                        <i class="fas fa-user-alt"></i>
-                    </a>
-                    <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        {% if user.is_superuser %}
-                            <a class="dropdown-item" target="_blank" href="{% url 'admin:index' %}">
-                                <i class="fas fa-users-cog fa-sm fa-fw mr-2"></i>Admin
-                            </a>
+                    {% if user.username != 'hospital' %}
+                        {% if user.username != 'ambulance' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'record:incident_form' %}">New Incident</a>
+                            </li>
                         {% endif %}
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logout' %}">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'record:incident_list' %}">Incidents</a>
+                        </li>
+                    {% endif %}
+                    {% if user.username != 'operator' %}
+                        {% if user.username != 'ambulance' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'record:medical_record_list' %}">Medical Records</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-5">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.get_full_name }}
+                            <i class="fas fa-user-alt"></i>
                         </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    {% endif %}
-</div>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            {% if user.is_superuser %}
+                                <a class="dropdown-item" target="_blank" href="{% url 'admin:index' %}">
+                                    <i class="fas fa-users-cog fa-sm fa-fw mr-2"></i>Admin
+                                </a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 </nav>

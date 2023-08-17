@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+    {{ medical_record_form.media }}
+
+    <section class="pb-5 pt-5">
+        <div class="container">
+            <h1>Medical Records</h1>
+        </div>
+    </section>
+    <form method="POST" id="incidentForm">
+        <div class="col-xl-10 m-auto">
+            <div class="row mb-2">
+                <p>
+                    <strong>
+                        Please log the details of the Patient and the Incident reported.
+                    </strong>
+                </p>
+            </div>
+            {% csrf_token %}
+            <div class="mb-6">
+                <div class="row">
+                    <div class="col-sm-12 col-xl-6">
+                        {{ medical_record_form.description|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        {{ medical_record_form.treatment|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xl-6">
+                        {{ medical_record_form.patient|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        {{ medical_record_form.incident|as_crispy_field }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2 float-end" name="redirect"
+                        value="{% url 'record:medical_record_list' %}">Submit
+                </button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

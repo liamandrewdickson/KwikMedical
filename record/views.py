@@ -112,9 +112,11 @@ def incident_list(request):
     :param request: The Web Server Gateway Interface request.
     :return: A rendered list of incidents.
     """
+    from django.conf import settings
     from record.models import Incident
 
-    args = {'incident_records': Incident.objects.all().order_by('time_occurred')}
+    args = {'incident_records': Incident.objects.all().order_by('time_occurred'),
+            'mapbox_access_token': settings.MAPBOX_KEY}
 
     return render(request, 'record/incident_list.html', args)
 
@@ -128,6 +130,35 @@ def medical_record_list(request):
     """
     from record.models import MedicalRecord
 
-    args = {'medical_records': MedicalRecord.objects.all()}
+    args = {'medical_records': MedicalRecord.objects.all().order_by('-pk')}
 
     return render(request, 'record/medical_record_view.html', args)
+
+
+def edit_medical_record_form(request, medical_record_id: int):
+    """
+    Generates and renders the medical record form.
+    :param medical_record_id: ID of the MedicalRecord.
+    :param request: The Web Server Gateway Interface request.
+    :return: A rendered medical record form
+    """
+    from django.http import HttpResponseRedirect
+    from record.forms import MedicalRecordForm
+    from record.models import MedicalRecord
+
+    if request.method == 'POST':
+        redirect = request.POST['redirect']
+        args = {'medical_record_form': MedicalRecordForm(request.POST)}
+        print(args['medical_record_form'].errors)
+
+        if args['medical_record_form'].is_valid():
+            incident = args['medical_record_form'].save(commit=False)
+            incident.pk = medical_record_id
+            args['medical_record_form'].save()
+
+            return HttpResponseRedirect(redirect)
+    else:
+        medical_record = get_object_or_404(MedicalRecord, pk=medical_record_id)
+        args = {'medical_record_form': MedicalRecordForm(request.POST or None, instance=medical_record)}
+
+    return render(request, 'record/forms/medical_record_form.html', args)

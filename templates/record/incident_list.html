@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% load mapbox_location_field_tags %}
+{% location_field_includes %}
+{% include_jquery %}
+
+{% block head %}
+    <script src='{% static 'vendor/mapbox/mapbox-gl.js' %}'></script>
+    <link href='{% static 'vendor/mapbox/mapbox-gl.css' %}' rel='stylesheet'/>
+{% endblock %}
+
 {% block content %}
     <section class="pb-5 pt-5">
         <div class="container">
@@ -15,22 +24,36 @@
                 <th scope="col">NHS Registration Number</th>
                 <th scope="col">Description</th>
                 <th scope="col">Time Occurred</th>
-                <th scope="col">Location</th>
                 <th scope="col">Action Taken</th>
                 <th scope="col">Minutes on Call</th>
             </tr>
             </thead>
             <tbody>
+            <script>
+                mapboxgl.accessToken = "{{ mapbox_access_token }}";
+            </script>
             {% for incident in incident_records %}
                 <tr class="table-row cursor-pointer">
                     <th class="col-1" scope="row">{{ incident.id }}</th>
                     <td class="col-1">{{ incident.nhs_reg_number }}</td>
-                    <td class="col-1">{{ incident.description }}</td>
-                    <td class="col-1">{{ incident.time_occurred }}</td>
-                    <td class="col-2">{{ incident.location }}</td>
+                    <td class="col-3">{{ incident.description }}</td>
+                    <td class="col-2">{{ incident.time_occurred }}</td>
                     <td class="col-2">{{ incident.action_taken }}</td>
                     <td class="col-1">{{ incident.minutes_on_call }}</td>
                 </tr>
+                <tr id='map{{ incident.id }}' width="100%" style='height:400px'></tr>
+                <script>
+                    let map{{ incident.id }} = new mapboxgl.Map({
+                        container: 'map{{ incident.id }}',
+                        style: 'mapbox://styles/mapbox/streets-v10',
+                        center: [{{ incident.location|first }}, {{ incident.location|last }}],
+                        zoom: 12
+                    });
+                    // Create a default Marker and add it to the map.
+                    let marker{{ incident.id }} = new mapboxgl.Marker()
+                        .setLngLat([{{ incident.location|first }}, {{ incident.location|last }}])
+                        .addTo(map{{ incident.id }});
+                </script>
             {% endfor %}
             </tbody>
         </table>

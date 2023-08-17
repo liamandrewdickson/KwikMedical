@@ -8,16 +8,40 @@
             <th scope="col">Incident description</th>
             <th scope="col">Description</th>
             <th scope="col">Treatment</th>
+            <th scope="col">Edit</th>
         </tr>
         </thead>
         <tbody>
         {% for medical_record in medical_records %}
-            <tr class="table-row cursor-pointer">
-                <td class="col-1">{{ medical_record.patient.nhs_reg_number }}</td>
-                <td class="col-2">{{ medical_record.incident.description }}</td>
-                <td class="col-1">{{ medical_record.description }}</td>
-                <td class="col-2">{{ medical_record.treatment }}</td>
-            </tr>
+            {% if medical_record.description == None or medical_record.treatment == None  %}
+                <tr class="table-row cursor-pointer">
+                    <td class="col-1 text-danger">{{ medical_record.patient.nhs_reg_number }}</td>
+                    <td class="col-2 text-danger">{{ medical_record.incident.description }}</td>
+                    <td class="col-1 text-danger">{{ medical_record.description }}</td>
+                    <td class="col-2 text-danger">{{ medical_record.treatment }}</td>
+                    <td class="text-center col-1">
+                        <a class="btn btn-sm btn-primary"
+                           href="{% url 'record:edit_medical_record_form' medical_record.pk %}"
+                           role="button">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="table-row cursor-pointer">
+                    <td class="col-1">{{ medical_record.patient.nhs_reg_number }}</td>
+                    <td class="col-2">{{ medical_record.incident.description }}</td>
+                    <td class="col-1">{{ medical_record.description }}</td>
+                    <td class="col-2">{{ medical_record.treatment }}</td>
+                    <td class="text-center col-1">
+                        <a class="btn btn-sm btn-primary"
+                           href="{% url 'record:edit_medical_record_form' medical_record.pk %}"
+                           role="button">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
