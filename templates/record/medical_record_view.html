@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="pb-5 pt-5">
+        <div class="container">
+            <h1>Medical Records</h1>
+        </div>
+    </section>
+    <main class="col-xl-10 m-auto">
+        {% include 'record/medical_record_list.html' %}
+    </main>
+{% endblock %}

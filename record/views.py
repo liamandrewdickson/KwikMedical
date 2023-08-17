@@ -117,3 +117,17 @@ def incident_list(request):
     args = {'incident_records': Incident.objects.all().order_by('time_occurred')}
 
     return render(request, 'record/incident_list.html', args)
+
+
+@login_required()
+def medical_record_list(request):
+    """
+    Generates and renders the medical record list.
+    :param request: The Web Server Gateway Interface request.
+    :return: A rendered list of incidents.
+    """
+    from record.models import MedicalRecord
+
+    args = {'medical_records': MedicalRecord.objects.all()}
+
+    return render(request, 'record/medical_record_view.html', args)

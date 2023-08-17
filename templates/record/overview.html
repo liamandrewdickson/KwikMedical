@@ -4,36 +4,48 @@
 
 {% block content %}
 
-        <section class="pb-5 pt-5">
-            <div class="container d-flex">
-                <h1>Home</h1>
-            </div>
-        </section>
-        <main class="col-xl-10 m-auto">
-            <div class="row">
-                <div class="col-sm-6 col-lg-6 mb-4">
-                    <div class="card text-white bg-secondary">
-                        <div class="card-body">
-                            <div class="card-title">New Incident</div>
-                            <p class="card-text">Report a new incident that has occurred.</p>
-                            <div class="d-grid gap-2">
-                                <a role="button" class="btn btn-block btn-primary" href="{% url 'record:incident_form' %}">Enter</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-6 mb-4">
-                    <div class="card text-white bg-secondary">
-                        <div class="card-body">
-                            <div class="card-title">Incidents</div>
-                            <p class="card-text">A list of all the Incidents.</p>
-                            <div class="d-grid gap-2">
-                                <a role="button" class="btn btn-block btn-primary" href="{% url 'record:incident_list' %}">Enter</a>
-                            </div>
+    <section class="pb-5 pt-5">
+        <div class="container d-flex">
+            <h1>Home</h1>
+        </div>
+    </section>
+    <main class="col-xl-10 m-auto">
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <div class="card-title">New Incident</div>
+                        <p class="card-text">Report a new incident that has occurred.</p>
+                        <div class="d-grid gap-2">
+                            <a role="button" class="btn btn-block btn-primary" href="{% url 'record:incident_form' %}">Enter</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+            <div class="col-sm-6 col-lg-6 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <div class="card-title">Incidents</div>
+                        <p class="card-text">A list of all the Incidents.</p>
+                        <div class="d-grid gap-2">
+                            <a role="button" class="btn btn-block btn-primary" href="{% url 'record:incident_list' %}">Enter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <div class="card-title">Medical Records</div>
+                        <p class="card-text">A list of all the Medical Records.</p>
+                        <div class="d-grid gap-2">
+                            <a role="button" class="btn btn-block btn-primary"
+                               href="{% url 'record:medical_record_list' %}">Enter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
 {% endblock %}

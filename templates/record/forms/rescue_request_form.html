@@ -42,6 +42,13 @@
                 <button type="submit" class="btn btn-primary mt-2 float-end" name="redirect"
                         value="{% url 'record:overview' %}">Submit
                 </button>
+                <div class="row mb-2 mt-5">
+                    <p>
+                        <strong>
+                            Patient's Medical History
+                        </strong>
+                    </p>
+                </div>
                 {% include 'record/medical_record_list.html' %}
             </div>
         </div>
