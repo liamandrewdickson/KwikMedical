@@ -1,4 +1,4 @@
-from django.forms import ModelForm, DateField, Textarea
+from django.forms import ModelForm, Textarea, DateTimeField
 
 
 class PatientForm(ModelForm):
@@ -20,10 +20,10 @@ class IncidentForm(ModelForm):
     """
     Form for the Incident table.
     """
-    from tempus_dominus.widgets import DatePicker
+    from tempus_dominus.widgets import DateTimePicker
 
-    time_occurred = DateField(
-        widget=DatePicker(
+    time_occurred = DateTimeField(
+        widget=DateTimePicker(
             attrs={
                 'input_toggle': True,
                 'icon_toggle': False,

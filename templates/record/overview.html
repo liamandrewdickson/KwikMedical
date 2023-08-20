@@ -38,19 +38,21 @@
                 </div>
             </div>
         {% endif %}
-        {% if user.username != 'ambulance' %}
-            <div class="col-sm-6 col-lg-6 mb-4">
-                <div class="card text-white bg-secondary">
-                    <div class="card-body">
-                        <div class="card-title">Medical Records</div>
-                        <p class="card-text">A list of all the Medical Records.</p>
-                        <div class="d-grid gap-2">
-                            <a role="button" class="btn btn-block btn-primary"
-                               href="{% url 'record:medical_record_list' %}">Enter</a>
+        {% if user.username != 'operator' %}
+            {% if user.username != 'ambulance' %}
+                <div class="col-sm-6 col-lg-6 mb-4">
+                    <div class="card text-white bg-secondary">
+                        <div class="card-body">
+                            <div class="card-title">Medical Records</div>
+                            <p class="card-text">A list of all the Medical Records.</p>
+                            <div class="d-grid gap-2">
+                                <a role="button" class="btn btn-block btn-primary"
+                                   href="{% url 'record:medical_record_list' %}">Enter</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         {% endif %}
         </div>
     </main>

@@ -115,7 +115,7 @@ def incident_list(request):
     from django.conf import settings
     from record.models import Incident
 
-    args = {'incident_records': Incident.objects.all().order_by('time_occurred'),
+    args = {'incident_records': Incident.objects.all().order_by('-pk'),
             'mapbox_access_token': settings.MAPBOX_KEY}
 
     return render(request, 'record/incident_list.html', args)
